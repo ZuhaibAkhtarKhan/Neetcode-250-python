@@ -7,16 +7,21 @@ class Solution(object):
         b = ["(", "[", "{"]
         stack = []
 
-        for p in s:
-
-            if p in b and stack:
-                stack.append(p)
+        stack.append(s[0])
+        i = 1
+        while i < len(s):
+            if s[i] in b:
+                stack.append(s[i])
             else:
-                if (p == ')' and stack[-1] == '(') or (p == ']' and stack[-1] == '[') or (p == '}' and stack[-1] == '{') :
+                if not stack:
+                    return False
+                elif (s[i] == ')' and stack[-1] == '(') or (s[i] == ']' and stack[-1] == '[') or (s[i] == '}' and stack[-1] == '{'):
                     stack.pop()
                 else:
                     return False
-                
+            i+=1
         return len(stack) == 0
+
+
 
 
